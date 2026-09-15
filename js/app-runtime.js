@@ -183,3 +183,6 @@ function bootPortfolio(){
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",bootPortfolio,{once:true});else bootPortfolio();
 })();
+
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",bootPortfolio,{once:true});else bootPortfolio();
+})();
