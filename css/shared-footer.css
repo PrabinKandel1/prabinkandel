@@ -167,3 +167,37 @@ html[data-theme="light"] .contact-dialog-panel .contact-form textarea::placehold
     line-height: 1.3 !important;
   }
 }
+/* =========================================================
+   MESSAGE DESK — LIGHT MODE INPUT VISIBILITY FIX
+   ========================================================= */
+
+html[data-theme="light"] .contact-dialog-panel .contact-form input,
+html[data-theme="light"] .contact-dialog-panel .contact-form textarea {
+  color: #111319 !important;
+  -webkit-text-fill-color: #111319 !important;
+  caret-color: #111319 !important;
+  opacity: 1 !important;
+  color-scheme: light !important;
+}
+
+html[data-theme="light"] .contact-dialog-panel .contact-form input::placeholder,
+html[data-theme="light"] .contact-dialog-panel .contact-form textarea::placeholder {
+  color: #6d727c !important;
+  -webkit-text-fill-color: #6d727c !important;
+  opacity: 1 !important;
+}
+
+/* Keep autofilled browser text visible in Light Mode */
+html[data-theme="light"] .contact-dialog-panel .contact-form input:-webkit-autofill,
+html[data-theme="light"] .contact-dialog-panel .contact-form textarea:-webkit-autofill {
+  -webkit-text-fill-color: #111319 !important;
+  color: #111319 !important;
+}
+
+/* Focused fields */
+html[data-theme="light"] .contact-dialog-panel .contact-form input:focus,
+html[data-theme="light"] .contact-dialog-panel .contact-form textarea:focus {
+  color: #111319 !important;
+  -webkit-text-fill-color: #111319 !important;
+  caret-color: #111319 !important;
+}
