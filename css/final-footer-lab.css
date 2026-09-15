@@ -1,0 +1,129 @@
+/* FINAL THEME PASS — INTERACTIVE LAB + FOOTER */
+
+/* Interactive Lab: fully theme-aware, no hard-coded dark surface */
+.experiment-gateway{
+  position:relative!important;
+  overflow:hidden!important;
+  isolation:isolate;
+  background:
+    radial-gradient(circle at 82% 18%, color-mix(in srgb,var(--lab-blue) 15%,transparent), transparent 30%),
+    radial-gradient(circle at 8% 90%, color-mix(in srgb,var(--lab-blue-deep) 10%,transparent), transparent 26%),
+    var(--lab-bg)!important;
+  color:var(--lab-text)!important;
+  border-block:1px solid var(--lab-line)!important;
+}
+.experiment-gateway:after{
+  content:"LAB / 030";
+  position:absolute;
+  right:4vw;
+  top:30px;
+  color:var(--lab-dim)!important;
+  opacity:.65;
+  font:700 8px/1 "DM Mono",monospace;
+  letter-spacing:.18em;
+  pointer-events:none;
+}
+.experiment-gateway .gateway{
+  position:relative!important;
+  min-height:430px;
+  padding:clamp(34px,6vw,76px)!important;
+  border:1px solid var(--lab-line-strong)!important;
+  border-radius:var(--lab-radius)!important;
+  background:color-mix(in srgb,var(--lab-surface) 94%,transparent)!important;
+  box-shadow:0 30px 100px color-mix(in srgb,var(--lab-bg) 20%,transparent)!important;
+}
+.experiment-gateway .gateway:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent 35%,color-mix(in srgb,var(--lab-blue) 5%,transparent),transparent 65%);
+  transform:translateX(-100%);
+  animation:labSweep 7s var(--lab-ease) infinite;
+  pointer-events:none;
+}
+.experiment-gateway .gateway:after{
+  content:"030";
+  position:absolute;
+  right:-.04em;
+  bottom:-.24em;
+  color:var(--lab-blue)!important;
+  opacity:.045;
+  font:800 clamp(230px,34vw,500px)/.75 "Space Grotesk",sans-serif;
+  letter-spacing:-.12em;
+  pointer-events:none;
+}
+.experiment-gateway .gateway > div:first-child{position:relative;z-index:2}
+.experiment-gateway .kicker{color:var(--lab-blue)!important}
+.experiment-gateway h2{
+  color:var(--lab-text)!important;
+  font-family:"Space Grotesk",ui-sans-serif,sans-serif!important;
+  font-size:clamp(62px,9vw,132px)!important;
+  line-height:.82!important;
+  letter-spacing:-.085em!important;
+  text-wrap:balance;
+}
+.experiment-gateway h2 em{
+  color:transparent!important;
+  -webkit-text-stroke:1px var(--lab-blue)!important;
+  text-shadow:0 0 35px var(--lab-glow);
+}
+.experiment-gateway .section-summary{color:var(--lab-muted)!important;max-width:620px!important}
+.experiment-gateway .button-dark{
+  position:relative;
+  z-index:3;
+  background:var(--lab-white)!important;
+  color:var(--lab-bg)!important;
+  border-color:var(--lab-white)!important;
+  box-shadow:0 15px 45px color-mix(in srgb,var(--lab-blue) 10%,transparent)!important;
+}
+.experiment-gateway .button-dark:hover{transform:translateY(-4px);box-shadow:0 22px 60px var(--lab-glow)!important}
+.experiment-gateway .gateway-meta{
+  position:relative;
+  z-index:3;
+  border:1px solid var(--lab-line)!important;
+  background:var(--lab-line)!important;
+}
+.experiment-gateway .gateway-meta span{
+  background:var(--lab-surface-2)!important;
+  color:var(--lab-muted)!important;
+  font:700 8px/1 "DM Mono",monospace!important;
+  letter-spacing:.13em;
+  transition:color .3s ease,background .3s ease,transform .3s ease;
+}
+.experiment-gateway .gateway-meta span:first-child{color:var(--lab-blue)!important}
+.experiment-gateway .gateway-meta span:hover{color:var(--lab-text)!important;background:var(--lab-surface)!important;transform:translateY(-2px)}
+
+/* Footer: same blue/white system in both themes */
+.footer{
+  position:relative;
+  overflow:hidden;
+  background:var(--lab-bg)!important;
+  color:var(--lab-text)!important;
+  border-top:1px solid var(--lab-line)!important;
+  padding:clamp(52px,7vw,86px) 0 22px!important;
+}
+.footer:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 85% 10%,color-mix(in srgb,var(--lab-blue) 8%,transparent),transparent 25%);
+  pointer-events:none;
+}
+.footer-top,.footer-bottom{position:relative;z-index:1}
+.footer-top p{color:var(--lab-muted)!important;font-family:"DM Mono",monospace!important}
+.footer-top>a:last-child{color:var(--lab-blue)!important;font-family:"DM Mono",monospace!important}
+.footer-bottom{border-top:1px solid var(--lab-line)!important;color:var(--lab-dim)!important}
+.footer .brand-word{color:var(--lab-text)!important}
+.footer .brand-word b{color:var(--lab-blue)!important}
+.footer .brand-mark{background:linear-gradient(135deg,var(--lab-blue),var(--lab-blue-deep))!important}
+.footer-top>a:last-child:hover{color:var(--lab-text)!important;transform:translateY(-4px)}
+
+@keyframes labSweep{0%,62%{transform:translateX(-100%)}82%,100%{transform:translateX(100%)}}
+@media(max-width:760px){
+  .experiment-gateway:after{display:none}
+  .experiment-gateway .gateway{min-height:0;padding:32px 24px!important}
+  .experiment-gateway h2{font-size:clamp(54px,15vw,90px)!important}
+  .experiment-gateway .gateway-meta{grid-template-columns:1fr 1fr!important}
+}
+@media(max-width:500px){.experiment-gateway .gateway-meta{grid-template-columns:1fr!important}}
+@media(prefers-reduced-motion:reduce){.experiment-gateway .gateway:before{animation:none}.experiment-gateway .button-dark:hover,.experiment-gateway .gateway-meta span:hover{transform:none}}

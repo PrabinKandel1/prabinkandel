@@ -1,0 +1,41 @@
+/* SELECTED WORK — FINAL BLUE/WHITE ART DIRECTION */
+.selected-work-new{background:var(--lab-bg)!important;color:var(--lab-text);position:relative;isolation:isolate}
+.selected-work-new:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.42;background:linear-gradient(transparent 0%,rgba(98,233,255,.025) 50%,transparent 100%);background-size:100% 180px;animation:workScan 9s linear infinite}
+.selected-work-new .container{position:relative;z-index:1}
+.selected-work-head{grid-template-columns:minmax(0,1fr) minmax(300px,.5fr);gap:clamp(32px,7vw,110px);margin-bottom:clamp(48px,7vw,86px)}
+.selected-work-head h2{font-family:"Space Grotesk",sans-serif!important;font-weight:600!important;letter-spacing:-.075em!important;color:var(--lab-white)!important;text-wrap:balance}
+.selected-work-head h2 em,.work-identity h3 em{color:transparent!important;-webkit-text-stroke:1px var(--lab-blue)!important;text-shadow:0 0 30px var(--lab-glow)}
+.selected-work-count{border-color:var(--lab-line-strong)!important;color:var(--lab-blue)!important;background:color-mix(in srgb,var(--lab-surface) 70%,transparent);border-radius:999px}
+.selected-work-intro p{color:var(--lab-muted)!important}
+.work-record{background:var(--lab-surface)!important;border-color:var(--lab-line)!important;box-shadow:0 22px 80px rgba(0,0,0,.12)!important;transition:transform .7s var(--lab-ease),border-color .4s,box-shadow .7s var(--lab-ease)}
+.work-record:hover{border-color:var(--lab-line-strong)!important;box-shadow:0 38px 110px rgba(0,0,0,.22)!important;transform:translateY(-8px)}
+.work-record--prometheus{background:var(--lab-surface)!important}
+.work-record-top{border-color:var(--lab-line)!important;color:var(--lab-dim)!important;background:color-mix(in srgb,var(--lab-surface-2) 55%,transparent)}
+.work-record-number,.work-record-id span:last-child,.work-kicker,.visual-topline span,.work-private i{color:var(--lab-blue)!important}
+.work-record-id{color:var(--lab-dim)!important}
+.work-identity{background:linear-gradient(135deg,color-mix(in srgb,var(--lab-surface) 94%,transparent),color-mix(in srgb,var(--lab-bg-soft) 75%,transparent))}
+.work-identity h3{color:var(--lab-white)!important;font-family:"Space Grotesk",sans-serif!important;font-weight:600!important;letter-spacing:-.065em!important}
+.work-description{color:var(--lab-muted)!important}
+.work-tags span{border-color:var(--lab-line-strong)!important;color:var(--lab-muted)!important;background:color-mix(in srgb,var(--lab-surface-2) 45%,transparent)}
+.work-text-link{color:var(--lab-text)!important;border-color:var(--lab-line-strong)!important}.work-text-link:hover{color:var(--lab-blue)!important;border-color:var(--lab-blue)!important}
+.work-private{color:var(--lab-dim)!important}
+.work-visual{border-color:var(--lab-line)!important;background:radial-gradient(circle at 50% 50%,var(--lab-glow),transparent 42%),var(--lab-bg-soft)!important}
+.work-visual:before{background:linear-gradient(135deg,var(--lab-glow),transparent 45%)!important;opacity:.7}
+.visual-topline,.visual-foot{color:var(--lab-dim)!important}.visual-topline b,.visual-foot span:last-child{color:var(--lab-muted)!important}
+.visual-foot{border-color:var(--lab-line)!important}
+.hire-flow-card{border-color:var(--lab-line-strong)!important;background:linear-gradient(110deg,color-mix(in srgb,var(--lab-surface) 96%,transparent),color-mix(in srgb,var(--lab-bg-soft) 94%,transparent))!important;box-shadow:0 22px 65px rgba(0,0,0,.14)!important;transition:transform .45s var(--lab-ease),border-color .35s,background .35s,box-shadow .45s var(--lab-ease)!important}
+.hire-flow-card:hover{transform:translateX(10px)!important;border-color:var(--lab-blue)!important;box-shadow:0 22px 70px var(--lab-glow)!important}
+.hire-flow-card--active{border-color:color-mix(in srgb,var(--lab-blue) 62%,var(--lab-line))!important;background:linear-gradient(110deg,color-mix(in srgb,var(--lab-blue-deep) 18%,var(--lab-surface)),var(--lab-surface))!important}
+.hire-flow-no{border-color:color-mix(in srgb,var(--lab-blue) 45%,var(--lab-line))!important;color:var(--lab-blue)!important}
+.hire-flow-card strong{color:var(--lab-white)!important;font-family:"Space Grotesk",sans-serif!important}.hire-flow-card span{color:var(--lab-muted)!important}.hire-flow-card i{color:var(--lab-blue)!important}.hire-flow-track span{background:linear-gradient(var(--lab-blue),transparent)!important}
+.prom-node{border-color:var(--lab-line-strong)!important;background:color-mix(in srgb,var(--lab-surface) 92%,transparent)!important}.prom-node:hover{border-color:var(--lab-blue)!important}.prom-node--active{border-color:color-mix(in srgb,var(--lab-blue) 58%,var(--lab-line))!important;background:linear-gradient(90deg,color-mix(in srgb,var(--lab-blue-deep) 17%,var(--lab-surface)),var(--lab-surface))!important}.prom-node small,.prom-node--active i{color:var(--lab-blue)!important}.prom-node strong{color:var(--lab-white)!important;font-family:"Space Grotesk",sans-serif!important}.prom-node span{color:var(--lab-muted)!important}.prom-node i{color:var(--lab-dim)!important}.prom-arrow{color:var(--lab-blue)!important}
+@keyframes workScan{from{background-position:0 -180px}to{background-position:0 180px}}
+@keyframes workRise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.selected-work-new .work-record{animation:workRise .9s var(--lab-ease) both}.selected-work-new .work-record:nth-of-type(3){animation-delay:.12s}
+@media(prefers-reduced-motion:reduce){.selected-work-new:before{animation:none}.selected-work-new .work-record{animation:none}}
+html[data-theme=light] .selected-work-new{background:var(--lab-bg)!important}
+html[data-theme=light] .work-record{background:var(--lab-surface)!important;box-shadow:0 24px 70px rgba(25,45,80,.09)!important}
+html[data-theme=light] .work-record-top{background:var(--lab-surface-2)!important}
+html[data-theme=light] .work-identity{background:linear-gradient(135deg,var(--lab-surface),var(--lab-bg-soft))!important}
+html[data-theme=light] .work-visual{background:radial-gradient(circle at 50% 50%,var(--lab-glow),transparent 44%),var(--lab-bg-soft)!important}
+html[data-theme=light] .hire-flow-card,html[data-theme=light] .prom-node{background:color-mix(in srgb,var(--lab-surface) 96%,transparent)!important;box-shadow:0 18px 55px rgba(35,65,110,.08)!important}

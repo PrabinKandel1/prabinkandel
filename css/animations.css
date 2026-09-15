@@ -1,0 +1,1 @@
+@keyframes float{50%{transform:translateY(-6px)}}.hero-note{animation:float 6s ease-in-out infinite}.scroll-cue i{animation:scrollLine 1.8s ease-in-out infinite}@keyframes scrollLine{0%,100%{transform:scaleY(.35);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}}

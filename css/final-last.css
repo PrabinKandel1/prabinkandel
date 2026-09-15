@@ -1,0 +1,129 @@
+
+/* FINAL LAST PASS — project presentation, contact form, and flow polish */
+
+/* Direct message: never fall back to dark/black browser text inside the dark dialog. */
+.contact-dialog-panel .contact-form label{color:#aab8cc!important}
+.contact-dialog-panel .contact-form input,
+.contact-dialog-panel .contact-form textarea{
+  color:#f5f8fd!important;
+  -webkit-text-fill-color:#f5f8fd!important;
+  caret-color:var(--accent)!important;
+}
+.contact-dialog-panel .contact-form input::placeholder,
+.contact-dialog-panel .contact-form textarea::placeholder{color:#71839d!important;opacity:1!important}
+.contact-dialog-panel .contact-form input:-webkit-autofill,
+.contact-dialog-panel .contact-form input:-webkit-autofill:hover,
+.contact-dialog-panel .contact-form input:-webkit-autofill:focus,
+.contact-dialog-panel .contact-form textarea:-webkit-autofill{
+  -webkit-text-fill-color:#f5f8fd!important;
+  box-shadow:0 0 0 1000px #0d1a2b inset!important;
+  transition:background-color 9999s ease-out 0s;
+}
+.contact-dialog-panel .contact-form input:focus,
+.contact-dialog-panel .contact-form textarea:focus{color:#fff!important}
+
+/* Work: make the two records feel intentionally occupied rather than leaving dead zones. */
+.project-feature{min-height:650px!important}
+.project-feature-main{padding:clamp(36px,5vw,76px)!important}
+.project-feature-copy{margin:auto 0!important}
+.project-feature-bottom .project-feature-link{
+  display:inline-flex!important;align-items:center;gap:10px;
+  min-height:48px;padding:0 18px!important;
+  border:1px solid var(--line2)!important;border-radius:999px!important;
+  color:var(--ink)!important;background:rgba(255,255,255,.025)!important;
+  transition:transform .35s var(--ease),border-color .35s,background .35s,color .35s;
+}
+.project-feature-bottom .project-feature-link:hover{transform:translateY(-2px);border-color:var(--accent)!important;background:rgba(98,233,255,.07)!important;color:var(--accent)!important}
+.project-feature-visual--hire{padding:clamp(30px,5vw,70px)!important}
+.project-feature-visual--hire:before{width:72%!important;opacity:.7}
+
+/* Hire-Nepal flow: three deliberate oval stages, with no empty centre. */
+.flow-board{width:min(100%,540px)!important;gap:14px!important}
+.flow-card{
+  min-height:82px!important;
+  grid-template-columns:44px 1fr auto!important;
+  border-radius:999px!important;
+  padding:15px 22px!important;
+  background:linear-gradient(110deg,rgba(11,24,41,.96),rgba(14,30,50,.88))!important;
+  border-color:rgba(180,205,238,.20)!important;
+}
+.flow-card small{width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(98,233,255,.28);border-radius:50%;background:rgba(98,233,255,.05)}
+.flow-card strong{font-size:15px!important;letter-spacing:.01em!important}
+.flow-card span{text-align:right!important;font-size:8px!important;white-space:nowrap}
+.flow-line{display:none!important}
+.flow-board:after{content:"CLEARER RECRUITMENT PATH";display:block;margin:4px 0 0;text-align:center;color:rgba(180,205,238,.45);font:700 7px "DM Mono",monospace;letter-spacing:.18em}
+
+/* Prometheus: replace the archive photo with a real software/system visual. */
+.project-feature-visual--prometheus{display:grid!important;place-items:center!important;padding:clamp(26px,4vw,58px)!important;background:radial-gradient(circle at 48% 44%,rgba(79,140,255,.13),transparent 42%),linear-gradient(145deg,#07111f,#0b1828)!important}
+.system-board{position:relative;z-index:2;width:min(100%,620px);padding:22px;border:1px solid rgba(180,205,238,.17);background:linear-gradient(145deg,rgba(13,29,48,.95),rgba(8,18,31,.97));box-shadow:0 30px 90px rgba(0,0,0,.28)}
+.system-board-head,.system-board-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;font:700 8px "DM Mono",monospace;letter-spacing:.13em}
+.system-board-head{padding-bottom:16px;border-bottom:1px solid var(--line);color:var(--accent)}
+.system-board-head b{color:var(--dim);font-weight:700}
+.system-stack{padding:18px 0}
+.system-node{display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:14px;padding:18px 16px;border:1px solid rgba(180,205,238,.13);background:rgba(255,255,255,.025);transition:transform .35s var(--ease),border-color .35s,background .35s}
+.system-node:hover{transform:translateX(6px);border-color:rgba(98,233,255,.35);background:rgba(98,233,255,.045)}
+.system-node small{width:32px;height:32px;display:grid;place-items:center;border:1px solid rgba(98,233,255,.25);border-radius:50%;color:var(--accent);font:700 8px "DM Mono",monospace}
+.system-node strong{display:block;color:var(--ink);font:700 12px "Space Grotesk",sans-serif;letter-spacing:.02em}
+.system-node span{display:block;margin-top:5px;color:var(--muted);font-size:10px;line-height:1.45}
+.system-node i{font:700 7px "DM Mono",monospace;font-style:normal;letter-spacing:.12em;color:var(--dim)}
+.system-node--active{border-color:rgba(98,233,255,.28);background:rgba(98,233,255,.055)}
+.system-node--active i{color:var(--accent)}
+.system-connector{height:26px;display:flex;align-items:center;justify-content:center;position:relative;color:var(--accent)}
+.system-connector span{position:absolute;height:100%;width:1px;background:linear-gradient(var(--accent),transparent);opacity:.3}
+.system-connector b{position:relative;z-index:1;background:#0b1929;padding:0 8px;font:700 12px "DM Mono",monospace}
+.system-board-foot{padding-top:16px;border-top:1px solid var(--line);color:var(--dim)}
+.system-board-foot strong{color:var(--ink);font:700 8px "DM Mono",monospace;letter-spacing:.13em}
+
+/* Hire-Nepal case study: match the prototype's oval interaction language. */
+.cs-flow--oval{grid-template-columns:1fr!important;gap:12px!important;background:transparent!important;border:0!important}
+.cs-flow--oval .cs-flow-step{min-height:86px!important;display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:16px;border:1px solid var(--cs-line2)!important;border-radius:999px!important;background:linear-gradient(110deg,rgba(16,34,56,.95),rgba(9,20,34,.98))!important;padding:14px 22px!important;transition:transform .35s var(--cs-ease),border-color .35s,background .35s}
+.cs-flow--oval .cs-flow-step:hover{transform:translateX(7px);border-color:rgba(79,140,255,.45)!important;background:linear-gradient(110deg,rgba(18,39,64,.98),rgba(10,23,39,.98))!important}
+.cs-flow--oval .cs-flow-step::after{display:none!important}
+.cs-flow--oval .cs-flow-step>span{width:34px;height:34px;display:grid;place-items:center;border:1px solid rgba(79,140,255,.34);border-radius:50%;font:700 8px DM Mono,monospace;color:var(--cs-blue)}
+.cs-flow--oval .cs-flow-step strong{margin:0!important;font:700 14px "Space Grotesk",sans-serif;letter-spacing:.02em;color:var(--cs-text)}
+.cs-flow--oval .cs-flow-step p{margin:4px 0 0!important;font:500 9px DM Mono,monospace;color:var(--cs-muted)}
+.cs-flow--oval .cs-flow-step>b{color:var(--cs-blue);font:700 14px DM Mono,monospace}
+
+@media(max-width:1050px){
+  .project-feature,.project-feature--prometheus{min-height:0!important}
+  .system-board{max-width:700px}
+}
+@media(max-width:760px){
+  .project-feature-bottom .project-feature-link{min-height:44px;padding-inline:15px!important}
+  .flow-card{grid-template-columns:40px 1fr!important;border-radius:26px!important}
+  .flow-card span{grid-column:2;text-align:left!important;white-space:normal!important}
+  .system-board{padding:16px}
+  .system-node{grid-template-columns:38px 1fr!important}
+  .system-node i{grid-column:2}
+  .cs-flow--oval .cs-flow-step{grid-template-columns:38px 1fr auto!important;border-radius:28px!important;padding:13px 17px!important}
+}
+/* Final theme-safe message desk */
+.contact-dialog-panel{background:linear-gradient(145deg,var(--surface),var(--bg2))!important;color:var(--ink)!important;border-color:var(--line2)!important}
+.contact-dialog .contact-form input,.contact-dialog .contact-form textarea{background:var(--bg2)!important;color:var(--ink)!important;border-color:var(--line2)!important}
+.contact-dialog .contact-form input::placeholder,.contact-dialog .contact-form textarea::placeholder{color:var(--muted)!important}
+.contact-dialog .contact-form label,.contact-dialog-panel>p,.contact-dialog-foot{color:var(--muted)!important}
+html[data-theme="light"] .contact-dialog-panel{background:var(--surface)!important;box-shadow:0 35px 100px rgba(20,35,70,.18)}
+html[data-theme="light"] .contact-dialog-backdrop{background:rgba(12,20,35,.38)!important}
+html[data-theme="light"] .contact-dialog .contact-form input,html[data-theme="light"] .contact-dialog .contact-form textarea{background:var(--bg2)!important;color:var(--ink)!important}
+.cursor-dot,.cursor-ring{display:none!important}
+
+/* Message desk — strict theme-aware surfaces */
+.contact-dialog-panel .contact-form input,.contact-dialog-panel .contact-form textarea{background:var(--lab-surface-2)!important;color:var(--lab-text)!important;border-color:var(--lab-line2)!important;caret-color:var(--lab-blue)!important}
+.contact-dialog-panel .contact-form input::placeholder,.contact-dialog-panel .contact-form textarea::placeholder{color:var(--lab-dim)!important}
+html[data-theme="light"] .contact-dialog-panel .contact-form input,html[data-theme="light"] .contact-dialog-panel .contact-form textarea{background:var(--lab-bg-soft)!important;color:var(--lab-text)!important}
+html[data-theme="dark"] .contact-dialog-panel .contact-form input,html[data-theme="dark"] .contact-dialog-panel .contact-form textarea{background:var(--lab-surface-2)!important;color:var(--lab-text)!important}
+
+/* Final theme-safe Message Desk surface */
+.contact-direct{
+  background:linear-gradient(135deg,color-mix(in srgb,var(--lab-surface) 96%,var(--lab-blue) 4%),var(--lab-bg-soft))!important;
+  color:var(--lab-text)!important;
+  border-color:var(--lab-line-strong)!important;
+  box-shadow:0 28px 90px color-mix(in srgb,var(--lab-bg) 22%,transparent)!important;
+}
+.contact-direct strong{color:var(--lab-text)!important}
+.contact-direct p{color:var(--lab-muted)!important}
+.contact-direct-index{color:var(--lab-blue)!important}
+html[data-theme=light] .contact-direct{
+  background:linear-gradient(135deg,var(--lab-surface),var(--lab-bg-soft))!important;
+  box-shadow:0 25px 75px rgba(24,36,64,.10)!important;
+}
