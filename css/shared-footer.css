@@ -201,3 +201,243 @@ html[data-theme="light"] .contact-dialog-panel .contact-form textarea:focus {
   -webkit-text-fill-color: #111319 !important;
   caret-color: #111319 !important;
 }
+/* =========================================================
+   PRABIN // PAGE ENTRY SYSTEM
+   Case Studies + Interactive Lab
+   ========================================================= */
+
+:root {
+  --pk-transition-bg: #080b0a;
+  --pk-transition-text: #f3f5ef;
+  --pk-transition-muted: #8d9891;
+  --pk-transition-accent: #8fd3ad;
+}
+
+/* Full-screen transition layer */
+.pk-page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: grid;
+  place-items: center;
+  background: var(--pk-transition-bg);
+  color: var(--pk-transition-text);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.pk-page-transition.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.pk-transition-grid {
+  position: absolute;
+  inset: 0;
+  opacity: .16;
+  background-image:
+    linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
+  background-size: 70px 70px;
+  transform: scale(1.15);
+}
+
+.pk-transition-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: var(--pk-transition-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  box-shadow: 0 0 30px rgba(143,211,173,.35);
+}
+
+.pk-transition-core {
+  position: relative;
+  z-index: 2;
+  width: min(680px, calc(100% - 42px));
+}
+
+.pk-transition-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 18px;
+  color: var(--pk-transition-muted);
+  font: 700 8px/1.2 "DM Mono", monospace;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.pk-transition-title {
+  margin: 0;
+  font: 600 clamp(48px, 8vw, 105px)/.82 "Space Grotesk", sans-serif;
+  letter-spacing: -.075em;
+  text-transform: lowercase;
+}
+
+.pk-transition-title em {
+  color: var(--pk-transition-accent);
+  font-style: normal;
+}
+
+.pk-transition-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 30px;
+  color: var(--pk-transition-muted);
+  font: 700 8px/1 "DM Mono", monospace;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.pk-transition-status i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--pk-transition-accent);
+  box-shadow: 0 0 16px var(--pk-transition-accent);
+}
+
+.pk-transition-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(255,255,255,.08);
+}
+
+.pk-transition-progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--pk-transition-accent);
+}
+
+/* Enter animation */
+.pk-page-transition.is-active .pk-transition-grid {
+  animation: pkTransitionGrid 1.2s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+.pk-page-transition.is-active .pk-transition-line {
+  animation: pkTransitionLine .8s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+.pk-page-transition.is-active .pk-transition-core {
+  animation: pkTransitionCore .75s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+.pk-page-transition.is-active .pk-transition-progress span {
+  animation: pkTransitionProgress 1.05s cubic-bezier(.65,0,.35,1) forwards;
+}
+
+@keyframes pkTransitionGrid {
+  from {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+  to {
+    opacity: .16;
+    transform: scale(1);
+  }
+}
+
+@keyframes pkTransitionLine {
+  0% {
+    transform: scaleX(0);
+  }
+  55% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes pkTransitionCore {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pkTransitionProgress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Subtle press response before transition */
+.pk-transitioning {
+  cursor: wait !important;
+}
+
+.pk-transitioning .work-text-link,
+.pk-transitioning .lab-launch {
+  pointer-events: none !important;
+}
+
+/* Light theme still gets the same premium dark transition */
+html[data-theme="light"] .pk-page-transition {
+  background: #0b100e;
+  color: #f3f5ef;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .pk-transition-core {
+    width: calc(100% - 32px);
+  }
+
+  .pk-transition-meta {
+    font-size: 7px;
+  }
+
+  .pk-transition-title {
+    font-size: clamp(46px, 15vw, 76px);
+  }
+
+  .pk-transition-status {
+    margin-top: 24px;
+  }
+
+  .pk-transition-grid {
+    background-size: 45px 45px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .pk-page-transition.is-active .pk-transition-grid,
+  .pk-page-transition.is-active .pk-transition-line,
+  .pk-page-transition.is-active .pk-transition-core,
+  .pk-page-transition.is-active .pk-transition-progress span {
+    animation: none !important;
+  }
+
+  .pk-page-transition.is-active .pk-transition-progress span {
+    width: 100%;
+  }
+
+  .pk-page-transition.is-active .pk-transition-line {
+    transform: scaleX(1);
+  }
+
+  .pk-page-transition.is-active .pk-transition-core {
+    opacity: 1;
+  }
+}
