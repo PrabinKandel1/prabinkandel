@@ -91,3 +91,79 @@ html[data-theme=light] .footer{background:var(--lab-bg,var(--g-bg,var(--cs-bg)))
     user-select: none !important;
   }
 }
+/* =========================================================
+   MESSAGE DESK — LIGHT MODE INPUT TEXT FIX
+   ========================================================= */
+
+html[data-theme="light"] .contact-dialog-panel .contact-form input,
+html[data-theme="light"] .contact-dialog-panel .contact-form textarea {
+  color: #111319 !important;
+  caret-color: #111319 !important;
+}
+
+html[data-theme="light"] .contact-dialog-panel .contact-form input::placeholder,
+html[data-theme="light"] .contact-dialog-panel .contact-form textarea::placeholder {
+  color: #6d727c !important;
+  opacity: 1 !important;
+}
+@media (max-width: 767px) {
+  /* SELECTED WORK — prevent mobile header text overlap */
+  .selected-work-head {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 24px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .selected-work-head > div,
+  .selected-work-intro {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .selected-work-head h2 {
+    max-width: 100% !important;
+    overflow-wrap: normal !important;
+  }
+
+  .selected-work-intro {
+    padding-bottom: 0 !important;
+  }
+
+  .selected-work-intro p {
+    max-width: 100% !important;
+    margin-top: 14px !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .selected-work-count {
+    max-width: 100% !important;
+    white-space: normal !important;
+    box-sizing: border-box !important;
+  }
+}
+@media (max-width: 767px) {
+  /* EDUCATION — mobile GPA scores */
+  #education .score-row {
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) !important;
+    column-gap: 10px !important;
+    row-gap: 4px !important;
+    align-items: baseline !important;
+    margin-top: 1.5rem !important;
+  }
+
+  #education .score-row b {
+    font-size: 2rem !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  #education .score-row small {
+    margin-right: 0 !important;
+    white-space: nowrap !important;
+    line-height: 1.3 !important;
+  }
+}
