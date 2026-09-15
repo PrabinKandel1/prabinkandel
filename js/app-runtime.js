@@ -174,8 +174,65 @@ function initContactMap() {
 function initProcess(){const section=document.querySelector('#process');const rail=document.querySelector('.process-layout');if(!section||!rail)return;const update=()=>{const r=section.getBoundingClientRect();const total=Math.max(1,r.height-innerHeight);const progress=Math.min(100,Math.max(0,((innerHeight-r.top)/total)*100));rail.style.setProperty('--process-progress',progress+'%')};window.addEventListener('scroll',update,{passive:true});update();}
 
 
+/* --- case-study-transition.js --- */
+function initPageTransitions(){
+  const links=document.querySelectorAll(
+    '.work-text-link[href^="case-studies/"],.work-actions .button-light[href^="case-studies/"]'
+  );
+
+  if(!links.length)return;
+
+  const transition=document.createElement('div');
+  transition.className='pk-page-transition';
+
+  transition.innerHTML=
+    '<div class="pk-transition-grid"></div>'+
+    '<div class="pk-transition-line"></div>'+
+    '<div class="pk-transition-core">'+
+      '<div class="pk-transition-meta">'+
+        '<span>05 / CASE STUDY</span>'+
+        '<span>PK / PROJECT ARCHIVE</span>'+
+      '</div>'+
+      '<h2 class="pk-transition-title">Opening <em>case file.</em></h2>'+
+      '<div class="pk-transition-status">'+
+        '<i></i>'+
+        '<span>Preparing project record</span>'+
+      '</div>'+
+    '</div>'+
+    '<div class="pk-transition-progress"><span></span></div>';
+
+  document.body.appendChild(transition);
+
+  links.forEach(link=>{
+    link.addEventListener('click',event=>{
+      if(
+        event.defaultPrevented||
+        event.button!==0||
+        event.metaKey||
+        event.ctrlKey||
+        event.shiftKey||
+        event.altKey||
+        link.target==='_blank'
+      )return;
+
+      const destination=link.getAttribute('href');
+      if(!destination)return;
+
+      event.preventDefault();
+
+      document.body.classList.add('pk-transitioning');
+      transition.classList.add('is-active');
+
+      window.setTimeout(()=>{
+        window.location.href=destination;
+      },1100);
+    });
+  });
+}
+
+
 function bootPortfolio(){
-  const tasks=[initLoader,initTheme,initNavigation,initReveal,initCounters,initSkills,initGallery,initCredentials,initLightbox,initContact,initAssistant,initPalette,initArtifact,initContactMap,initProcess];
+  const tasks=[initLoader,initTheme,initNavigation,initReveal,initCounters,initSkills,initGallery,initCredentials,initLightbox,initContact,initAssistant,initPalette,initArtifact,initContactMap,initProcess,initPageTransitions];
   for(const task of tasks){try{task()}catch(error){console.error(`[Prabin Lab] ${task.name||"module"} failed`,error)}}
   const year=new Date().getFullYear();
   document.querySelector("#year")?.replaceChildren(String(year));
@@ -183,5 +240,3 @@ function bootPortfolio(){
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",bootPortfolio,{once:true});else bootPortfolio();
 })();
-
-
