@@ -985,6 +985,107 @@ html[data-theme="light"] .pk-page-transition {
    ========================================================= */
 
 
+/* =========================================================
+   RESUME THEME COLOR FIX
+   ========================================================= */
 
+.resume-section .resume-document {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.resume-section .resume-paper {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.resume-section .resume-action {
+  background: var(--bg);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.resume-section .resume-action--primary {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+
+.resume-section .resume-action--primary:hover {
+  background: var(--bg);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+.resume-section .resume-action:hover {
+  border-color: var(--ink);
+}
+
+.resume-section .resume-document-top,
+.resume-section .resume-document-bottom {
+  background: var(--bg);
+  color: var(--muted);
+  border-color: var(--line);
+}
+
+.resume-section .resume-meta-grid div {
+  background: var(--bg);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.resume-section .resume-info-block,
+.resume-section .resume-note {
+  border-color: var(--line);
+}
+
+.resume-section .resume-info-block h3,
+.resume-section .resume-meta-grid strong {
+  color: var(--ink);
+}
+
+.resume-section .resume-info-block p,
+.resume-section .resume-note p,
+.resume-section .resume-label,
+.resume-section .resume-meta-grid span,
+.resume-section .resume-note > span {
+  color: var(--muted);
+}
+
+/* Keep the resume paper intentionally inverted
+   relative to the active page theme for document contrast. */
+
+.resume-section .resume-paper-mark span {
+  color: var(--bg);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.resume-section .resume-paper-mark i {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.resume-section .resume-paper-heading span,
+.resume-section .resume-paper-heading em,
+.resume-section .resume-paper-grid span,
+.resume-section .resume-paper-footer {
+  color: var(--bg);
+}
+
+.resume-section .resume-paper-rule,
+.resume-section .resume-paper-footer {
+  border-color: rgba(255, 255, 255, 0.24);
+}
+
+.resume-section .resume-paper::before {
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.resume-section .resume-paper::after {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* =========================================================
+   END RESUME THEME COLOR FIX
+   ========================================================= */
 
 
