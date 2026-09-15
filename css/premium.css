@@ -39,3 +39,184 @@ body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;ba
 
 /* Cursor disabled by design */
 .cursor-dot,.cursor-ring{display:none!important;pointer-events:none!important}
+
+
+/* =========================================================
+   MOBILE RESPONSIVE PATCH
+   Add this at the VERY BOTTOM of your main CSS file.
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* -----------------------------------------------------
+       1. EDUCATION SECTION
+       Prevent the timeline/content from being clipped.
+       ----------------------------------------------------- */
+
+    .education,
+    #education,
+    .education-section {
+        width: 100%;
+        max-width: 100%;
+        overflow: visible;
+    }
+
+    .education *,
+    #education *,
+    .education-section * {
+        max-width: 100%;
+    }
+
+    .education-container,
+    .education-content,
+    .education-grid,
+    .education-timeline {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow: visible;
+    }
+
+    .education-card,
+    .education-item,
+    .education-entry,
+    .education-content > *,
+    .education-grid > * {
+        min-width: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Prevent long text from forcing the section wider */
+    .education h1,
+    .education h2,
+    .education h3,
+    .education h4,
+    .education p,
+    .education span,
+    .education div,
+    #education h1,
+    #education h2,
+    #education h3,
+    #education h4,
+    #education p,
+    #education span,
+    #education div {
+        overflow-wrap: anywhere;
+        word-break: normal;
+    }
+
+
+    /* -----------------------------------------------------
+       2. "WHAT I BUILD WITH"
+       Prevent cards/items from becoming squeezed.
+       ----------------------------------------------------- */
+
+    .build-with,
+    .what-i-build-with,
+    #build-with,
+    #what-i-build-with {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow: visible;
+    }
+
+    .build-with-container,
+    .build-with-grid,
+    .build-with-list,
+    .build-with-items {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .build-with-card,
+    .build-with-item,
+    .tech-card,
+    .technology-card {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
+    .build-with-card *,
+    .build-with-item *,
+    .tech-card *,
+    .technology-card * {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    /* Keep names/labels readable instead of compressing them */
+    .build-with-card span,
+    .build-with-item span,
+    .tech-card span,
+    .technology-card span {
+        overflow-wrap: anywhere;
+    }
+
+
+    /* -----------------------------------------------------
+       3. GENERAL MOBILE OVERFLOW PROTECTION
+       Stops accidental horizontal page movement.
+       ----------------------------------------------------- */
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    main,
+    section,
+    article,
+    .container {
+        max-width: 100%;
+    }
+
+    img,
+    video,
+    canvas,
+    iframe {
+        max-width: 100%;
+    }
+}
+
+
+/* =========================================================
+   EXTRA SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .education,
+    #education,
+    .education-section {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .build-with,
+    .what-i-build-with,
+    #build-with,
+    #what-i-build-with {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .build-with-container,
+    .build-with-grid,
+    .build-with-list,
+    .build-with-items {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
+
