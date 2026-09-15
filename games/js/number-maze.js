@@ -1,0 +1,8 @@
+const root=document.querySelector("#game-ui");
+let cells=[],pos=0,won=false;
+function hasPath(){const q=[0],seen=new Set([0]);while(q.length){const i=q.shift();if(i===99)return true;const r=Math.floor(i/10),c=i%10;for(const n of [i-10,i+10,i-1,i+1]){if(n<0||n>=100)continue;const nr=Math.floor(n/10),nc=n%10;if(Math.abs(nr-r)+Math.abs(nc-c)!==1||cells[n]||seen.has(n))continue;seen.add(n);q.push(n)}}return false}
+function fresh(){do{cells=Array.from({length:100},()=>Math.random()>.76?1:0);cells[0]=cells[99]=0}while(!hasPath());pos=0;won=false;draw()}
+function draw(){grid.innerHTML=cells.map((v,i)=>`<div class="cell ${v?'wall':'path'} ${i===pos?'player':''}">${i===pos?"●":""}</div>`).join("");m.textContent=won?"EXIT REACHED — clean route.":"Move with WASD / arrow keys. A clear route is always guaranteed."}
+function go(k){if(won)return;const r=Math.floor(pos/10),c=pos%10,n={ArrowUp:pos-10,ArrowDown:pos+10,ArrowLeft:pos-1,ArrowRight:pos+1,w:pos-10,s:pos+10,a:pos-1,d:pos+1,W:pos-10,S:pos+10,A:pos-1,D:pos+1}[k];if(n==null||n<0||n>=100||cells[n]||(k.toLowerCase()==="a"&&c===0)||(k.toLowerCase()==="d"&&c===9))return;pos=n;if(pos===99)won=true;draw()}
+root.innerHTML=`<div class="toolbar"><span class="score">10 × 10 · ROUTE FINDING</span><button class="btn primary" id="new">New maze</button></div><div class="maze" id="grid"></div><div class="message" id="m"></div>`;
+const grid=document.querySelector("#grid"),m=document.querySelector("#m");document.addEventListener("keydown",e=>{if(["ArrowUp","ArrowDown","ArrowLeft","ArrowRight","w","a","s","d","W","A","S","D"].includes(e.key)){e.preventDefault();go(e.key)}});document.querySelector("#new").onclick=fresh;fresh();

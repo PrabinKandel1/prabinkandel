@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <meta content="Word Guess &mdash; Prabin Kandel DIGITAL LAB / PLAY." name="description"/>
+  <title>
+   Word Guess // DIGITAL LAB / PLAY
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="css/games.css" rel="stylesheet"/><link href="css/games-theme.css" rel="stylesheet"/><link href="../css/shared-footer.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <main class="game-page">
+   <div class="game-wrap">
+    <div class="game-top">
+     <a class="game-brand" href="index.html">
+      DIGITAL LAB / PLAY / 12
+     </a>
+     <a class="back" href="index.html">
+      &larr; ALL GAMES
+     </a>
+    </div>
+    <p class="game-kicker">
+     WORDS / BROWSER EXPERIMENT
+    </p>
+    <h1 class="game-title">
+     Word Guess
+    </h1>
+    <p class="game-desc">
+     Use clues and letters to uncover the hidden word.
+    </p>
+    <section class="game-panel" id="game">
+     <div id="game-ui">
+     </div>
+    </section>
+    <p class="instructions">
+     Runs locally in your browser. No account or backend. Where supported, personal bests are stored only on this device.
+    </p>
+   </div>
+  </main><footer class="footer">
+<div class="container footer-top">
+<a class="brand" href="../index.html"><span class="brand-mark">PK</span><span class="brand-word">PRABIN <b>KANDEL</b></span></a>
+<p>Interfaces · Software · Experiments · Pokhara / Nepal</p>
+<a href="#game">BACK TO TOP ↑</a>
+</div>
+<div class="container footer-bottom">
+<span>© <span id="footer-year">2026</span> PRABIN KANDEL</span><span>BUILT AS A DIGITAL LAB</span><span>POKHARA / NEPAL</span>
+</div>
+</footer>
+  <script src="js/core.js"></script>
+ <script src="js/word-guess.js">
+  </script>
+ <script src="theme.js"></script><script>document.querySelector("#footer-year")?.replaceChildren(String(new Date().getFullYear()));</script></body>
+</html>

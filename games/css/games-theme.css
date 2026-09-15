@@ -1,0 +1,65 @@
+/* Shared blue/white theme for every experiment, including individual games. */
+html{--g-bg:#070812;--g-bg2:#0b0f1d;--g-surface:#101629;--g-surface2:#151c31;--g-text:#f5f7ff;--g-muted:#98a4bb;--g-line:rgba(166,185,230,.15);--g-line2:rgba(166,185,230,.28);--g-blue:#62e9ff;--g-blue2:#315cff;--g-glow:rgba(98,233,255,.16)}
+html[data-theme="light"]{--g-bg:#f4f7fc;--g-bg2:#eaf0fa;--g-surface:#fff;--g-surface2:#edf2f9;--g-text:#0a1020;--g-muted:#66728a;--g-line:rgba(24,36,64,.12);--g-line2:rgba(24,36,64,.24);--g-blue:#315cff;--g-blue2:#2546d6;--g-glow:rgba(49,92,255,.14)}
+body.game-page, main.game-page{background:radial-gradient(circle at 80% 0%,var(--g-glow),transparent 30%),var(--g-bg)!important;color:var(--g-text)!important;transition:background .45s ease,color .45s ease}.game-page .game-header{border-color:var(--g-line)!important}.game-page .back,.game-page .eyebrow,.game-page .status,.game-page .game-brand{color:var(--g-blue)!important}.game-page .game-shell,.game-page .game-panel,.game-page .game-input,.game-page .choice,.game-page .result,.game-page .instructions{background:var(--g-surface)!important;border-color:var(--g-line)!important;color:var(--g-text)!important}.game-page .game-desc,.game-page .instructions,.game-page .hud-item span{color:var(--g-muted)!important}.game-page button,.game-page .game-button{border-color:var(--g-blue)!important}.game-page .game-button{background:var(--g-blue)!important;color:var(--g-bg)!important}.game-page .ghost-button,.game-page .choice{background:var(--g-surface2)!important;color:var(--g-text)!important}.game-page .choice:hover{border-color:var(--g-blue)!important}.game-top-actions{display:flex;align-items:center;gap:14px}.game-theme,.store-theme,.cs-theme{border:1px solid var(--g-line2);background:transparent;color:var(--g-muted);padding:9px 11px;font:700 7px "DM Mono",monospace;letter-spacing:.12em;cursor:pointer}.game-theme:hover,.store-theme:hover,.cs-theme:hover{color:var(--g-blue);border-color:var(--g-blue)}
+/* Individual game surfaces use the same variables even though .game-page is the main element. */
+html[data-theme="light"] body{background:var(--g-bg)!important;color:var(--g-text)!important}
+.game-page .game-header>div:last-child,.game-top-actions{align-items:center}
+
+/* DIGITAL LAB / PLAY — interaction quality layer */
+.game-page button,
+.game-page input,
+.game-page textarea,
+.game-page select { font: inherit; }
+.game-page button { -webkit-tap-highlight-color: transparent; }
+.game-page button:focus-visible,
+.game-page input:focus-visible,
+.game-page textarea:focus-visible,
+.game-page select:focus-visible { outline: 2px solid var(--accent, #1677ff); outline-offset: 3px; }
+.game-page .game-button:disabled,
+.game-page .btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+.game-page .game-input { width: 100%; box-sizing: border-box; }
+.game-page .game-actions { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+.game-page .result,
+.game-page .message { min-height: 1.5em; }
+.game-page .game-hud { gap: 10px; }
+@media (max-width: 640px) {
+  .game-page .game-hud { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .game-page .game-actions > * { flex: 1 1 150px; }
+}
+
+/* FINAL THEME / LEGIBILITY HARDENING
+   Keep every game readable in both themes, especially generated typing/memory UI. */
+body.game-page,
+main.game-page{--game-text:var(--g-text)!important;--game-muted:var(--g-muted)!important;--game-bg:var(--g-bg)!important;--game-panel:var(--g-surface)!important;--game-panel2:var(--g-surface2)!important;--game-line:var(--g-line)!important;--game-line2:var(--g-line2)!important;--game-blue:var(--g-blue)!important;background:radial-gradient(circle at 80% 0%,var(--g-glow),transparent 30%),var(--g-bg)!important;color:var(--g-text)!important}
+.game-page .game-wrap,.game-page .game-top,.game-page .game-kicker,.game-page .game-title,.game-page .game-desc,.game-page .game-panel,.game-page .instructions{color:var(--g-text)!important}
+.game-page .game-desc,.game-page .instructions,.game-page .hud-item span,.game-page .game-meta,.game-page label{color:var(--g-muted)!important}
+.game-page .typing-prompt,
+.game-page .typing-label,
+.game-page .typing-input,
+.game-page .typing-prompt-wrap{color:var(--g-text)!important}
+.game-page .typing-prompt{background:var(--g-surface)!important;border-left:2px solid var(--g-blue)!important;padding:14px 16px!important;border-top:1px solid var(--g-line)!important;border-right:1px solid var(--g-line)!important;border-bottom:1px solid var(--g-line)!important;border-radius:0!important}
+.game-page .typing-label{font:700 8px "DM Mono",monospace!important;letter-spacing:.14em!important;color:var(--g-blue)!important;margin-bottom:8px!important}
+.game-page .typing-input,
+.game-page input,
+.game-page textarea,
+.game-page select{background:var(--g-surface2)!important;color:var(--g-text)!important;border-color:var(--g-line2)!important;caret-color:var(--g-blue)!important}
+.game-page .typing-input::placeholder,
+.game-page input::placeholder,
+.game-page textarea::placeholder{color:var(--g-muted)!important;opacity:1!important}
+.game-page .game-panel *{text-shadow:none!important}
+.game-page .choice,.game-page .choices button,.game-page .cell,.game-page .memory-card,.game-page .pattern-cell,.game-page .seq-cell{color:var(--g-text)!important}
+.game-page .status,.game-page .result,.game-page .message{color:var(--g-blue)!important}
+.game-page .game-button,.game-page .btn.primary{color:var(--g-bg)!important;background:var(--g-blue)!important}
+html[data-theme="light"] .game-page .game-button,
+html[data-theme="light"] .game-page .btn.primary{color:#fff!important}
+.game-page button:disabled{color:var(--g-muted)!important}
+
+@media(max-width:700px){
+  .game-page{padding-left:14px!important;padding-right:14px!important}
+  .game-page .game-top{margin-bottom:32px!important;align-items:flex-start!important}
+  .game-page .game-title{font-size:clamp(48px,15vw,86px)!important;line-height:.88!important}
+  .game-page .game-panel{padding:16px!important;border-radius:14px!important}
+  .game-page .game-hud{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .game-page .game-actions>*{flex:1 1 140px!important}
+}
