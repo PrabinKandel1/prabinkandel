@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>./</loc></url>
-<url><loc>games/index.html</loc></url>
-<url><loc>case-studies/prometheus-x.html</loc></url>
-<url><loc>case-studies/hire-nepal.html</loc></url>
+  <url>
+    <loc>https://prabin-kandel.com.np/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://prabin-kandel.com.np/games/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://prabin-kandel.com.np/case-studies/prometheus.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://prabin-kandel.com.np/case-studies/hire-nepal.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
