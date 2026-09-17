@@ -70,8 +70,125 @@ const images=["66.webp","8.webp","7.webp","22.webp","4.webp","3.webp","1.webp","
 const items=[["competition","VECTOR 2082","Winner · +2 category · Open Project Demonstration","assets/images/IMG_20260531_121307.webp"],["competition","Lions Club Inter-School Quiz Contest","2nd place recognition","assets/images/IMG_20260531_121051.webp"],["competition","Academic quiz recognition","ANNFSU recognition preserved in the supplied archive","assets/images/IMG_20260531_121033.webp"],["academic","Academic record","Certificate/document from the supplied school archive","assets/images/IMG_20260531_121212.webp"],["academic","School record","Transfer / academic document preserved from the original archive","assets/images/IMG_20260531_121231.webp"],["training","Certificate record","Training / participation certificate from the supplied archive","assets/images/IMG_20260531_121116.webp"]];function initCredentials(){const grid=$("#credentials-grid"),search=$("#credential-search"),buttons=[...document.querySelectorAll("[data-filter]")];if(!grid)return;let filter="all";const render=()=>{const q=(search?.value||"").toLowerCase().trim(),found=items.filter(x=>(filter==="all"||x[0]===filter)&&x.slice(0,3).join(" ").toLowerCase().includes(q));grid.innerHTML=found.length?found.map((x,i)=>`<article class="archive-item"><figure><img loading="lazy" decoding="async" src="${x[3]}" alt="${x[1]} evidence"></figure><div class="archive-copy"><small>${x[0].toUpperCase()} / ${String(i+1).padStart(2,"0")}</small><h3>${x[1]}</h3><p>${x[2]}</p></div><button type="button" data-lightbox="${x[3]}" data-caption="${x[1]} — ${x[2]}">OPEN EVIDENCE ↗</button></article>`).join(""):`<div class="empty">No archive item matches that search.</div>`};buttons.forEach(b=>b.addEventListener("click",()=>{buttons.forEach(x=>x.classList.remove("active"));b.classList.add("active");filter=b.dataset.filter;render()}));search?.addEventListener("input",render);render();}
 
 /* --- lightbox.js --- */
-function initLightbox(){const box=$("#lightbox"),img=$("#lightbox-image"),cap=$("#lightbox-caption"),close=$("#lightbox-close"),prev=$("#lightbox-prev"),next=$("#lightbox-next");let index=0;const items=()=>[...document.querySelectorAll("[data-lightbox]")];const open=i=>{const all=items();if(!all.length)return;index=(i+all.length)%all.length;const x=all[index];img.src=x.dataset.lightbox;img.alt=x.querySelector("img")?.alt||x.dataset.caption||"";cap.textContent=x.dataset.caption||"";box.hidden=false;document.body.style.overflow="hidden";close.focus()};const hide=()=>{box.hidden=true;document.body.style.overflow=""};document.addEventListener("click",e=>{const x=e.target.closest("[data-lightbox]");if(x)open(items().indexOf(x))});close.addEventListener("click",hide);prev.addEventListener("click",()=>open(index-1));next.addEventListener("click",()=>open(index+1));document.addEventListener("keydown",e=>{if(box.hidden)return;if(e.key==="Escape")hide();if(e.key==="ArrowLeft")open(index-1);if(e.key==="ArrowRight")open(index+1)});}
 
+  /* --- lightbox.js --- */
+function initLightbox(){
+  const box=$("#lightbox"),
+        img=$("#lightbox-image"),
+        cap=$("#lightbox-caption"),
+        close=$("#lightbox-close"),
+        prev=$("#lightbox-prev"),
+        next=$("#lightbox-next");
+
+  if(!box||!img||!cap||!close||!prev||!next)return;
+
+  let index=0;
+  let historyOpen=false;
+
+  const items=()=>[...document.querySelectorAll("[data-lightbox]")];
+
+  const open=(i,useHistory=true)=>{
+    const all=items();
+
+    if(!all.length)return;
+
+    index=(i+all.length)%all.length;
+
+    const x=all[index];
+
+    img.src=x.dataset.lightbox;
+    img.alt=x.querySelector("img")?.alt||x.dataset.caption||"";
+    cap.textContent=x.dataset.caption||"";
+
+    box.hidden=false;
+    document.body.style.overflow="hidden";
+
+    /*
+     * Create a temporary browser-history state when the
+     * lightbox opens. This allows Android/browser Back to
+     * close the viewer instead of leaving the portfolio.
+     */
+    if(useHistory&&!historyOpen){
+      history.pushState(
+        {lightbox:true},
+        "",
+        location.href
+      );
+
+      historyOpen=true;
+    }
+
+    close.focus();
+  };
+
+  const hide=(fromHistory=false)=>{
+    if(box.hidden)return;
+
+    box.hidden=true;
+    document.body.style.overflow="";
+
+    /*
+     * If the user clicked ×, remove the temporary history
+     * entry so the next Back press behaves normally.
+     */
+    if(!fromHistory&&historyOpen){
+      history.back();
+      return;
+    }
+
+    historyOpen=false;
+  };
+
+  document.addEventListener("click",e=>{
+    const x=e.target.closest("[data-lightbox]");
+
+    if(!x)return;
+
+    e.preventDefault();
+
+    open(items().indexOf(x));
+  });
+
+  close.addEventListener("click",()=>{
+    hide(false);
+  });
+
+  prev.addEventListener("click",()=>{
+    open(index-1,false);
+  });
+
+  next.addEventListener("click",()=>{
+    open(index+1,false);
+  });
+
+  /*
+   * Android / browser Back:
+   * close the lightbox instead of leaving the page.
+   */
+  window.addEventListener("popstate",()=>{
+    if(historyOpen){
+      historyOpen=false;
+      box.hidden=true;
+      document.body.style.overflow="";
+    }
+  });
+
+  document.addEventListener("keydown",e=>{
+    if(box.hidden)return;
+
+    if(e.key==="Escape"){
+      hide(false);
+    }
+
+    if(e.key==="ArrowLeft"){
+      open(index-1,false);
+    }
+
+    if(e.key==="ArrowRight"){
+      open(index+1,false);
+    }
+  });
+}
 /* --- contact.js --- */
 function initContact(){
  const copyButtons=document.querySelectorAll('[data-copy]');
