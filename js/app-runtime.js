@@ -82,7 +82,8 @@ function initLightbox(){
   if(!box||!img||!cap||!close||!prev||!next)return;
 
   let index=0;
-  let lightboxHistory=false;
+  let lightboxOpen=false;
+  let previousHash="";
 
   const items=()=>[...document.querySelectorAll("[data-lightbox]")];
 
@@ -102,30 +103,31 @@ function initLightbox(){
     box.hidden=false;
     document.body.style.overflow="hidden";
 
-    if(addHistory&&!lightboxHistory){
+    if(addHistory&&!lightboxOpen){
+      previousHash=location.hash;
+
       history.pushState(
         {
-          ...(history.state||{}),
-          __lightbox:true
+          lightbox:true
         },
         "",
-        location.href
+        "#lightbox"
       );
 
-      lightboxHistory=true;
+      lightboxOpen=true;
     }
 
     close.focus();
   };
 
-  const closeLightbox=()=>{
+  const hide=()=>{
     if(box.hidden)return;
 
     box.hidden=true;
     document.body.style.overflow="";
 
-    if(lightboxHistory){
-      lightboxHistory=false;
+    if(lightboxOpen){
+      lightboxOpen=false;
       history.back();
     }
   };
@@ -140,9 +142,7 @@ function initLightbox(){
     open(items().indexOf(x),true);
   });
 
-  close.addEventListener("click",()=>{
-    closeLightbox();
-  });
+  close.addEventListener("click",hide);
 
   prev.addEventListener("click",()=>{
     open(index-1,false);
@@ -153,20 +153,16 @@ function initLightbox(){
   });
 
   /*
-   * Android / browser Back button.
+   * Android / browser Back.
    *
-   * Opening the lightbox creates one temporary history entry.
-   * Pressing Back removes that entry and closes the lightbox,
-   * keeping the user on the portfolio page.
+   * The lightbox creates a temporary #lightbox history entry.
+   * Back removes that entry and closes the viewer instead of
+   * navigating away from the portfolio.
    */
   window.addEventListener("popstate",e=>{
-    if(!lightboxHistory)return;
+    if(!lightboxOpen)return;
 
-    if(e.state?.__lightbox){
-      return;
-    }
-
-    lightboxHistory=false;
+    lightboxOpen=false;
     box.hidden=true;
     document.body.style.overflow="";
   });
@@ -175,7 +171,7 @@ function initLightbox(){
     if(box.hidden)return;
 
     if(e.key==="Escape"){
-      closeLightbox();
+      hide();
       return;
     }
 
