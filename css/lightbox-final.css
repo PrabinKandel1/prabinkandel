@@ -1,1 +1,59 @@
+/* =========================================================
+   LIGHTBOX FINAL OVERRIDES
+   This file intentionally loads LAST.
+   ========================================================= */
 
+#lightbox {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 999999 !important;
+}
+
+#lightbox[hidden] {
+  display: none !important;
+}
+
+#lightbox-close {
+  position: fixed !important;
+
+  top: 16px !important;
+  right: 16px !important;
+  left: auto !important;
+  bottom: auto !important;
+
+  width: 48px !important;
+  height: 48px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  background: #050705 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #ffffff66 !important;
+
+  font-family: Arial, sans-serif !important;
+  font-size: 32px !important;
+  line-height: 1 !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+
+  z-index: 1000000 !important;
+}
+
+@media (max-width: 560px) {
+  #lightbox-close {
+    top: 12px !important;
+    right: 12px !important;
+
+    width: 44px !important;
+    height: 44px !important;
+
+    font-size: 30px !important;
+  }
+}
