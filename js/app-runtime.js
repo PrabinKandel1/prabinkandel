@@ -70,8 +70,7 @@ const images=["66.webp","8.webp","7.webp","22.webp","4.webp","3.webp","1.webp","
 const items=[["competition","VECTOR 2082","Winner · +2 category · Open Project Demonstration","assets/images/IMG_20260531_121307.webp"],["competition","Lions Club Inter-School Quiz Contest","2nd place recognition","assets/images/IMG_20260531_121051.webp"],["competition","Academic quiz recognition","ANNFSU recognition preserved in the supplied archive","assets/images/IMG_20260531_121033.webp"],["academic","Academic record","Certificate/document from the supplied school archive","assets/images/IMG_20260531_121212.webp"],["academic","School record","Transfer / academic document preserved from the original archive","assets/images/IMG_20260531_121231.webp"],["training","Certificate record","Training / participation certificate from the supplied archive","assets/images/IMG_20260531_121116.webp"]];function initCredentials(){const grid=$("#credentials-grid"),search=$("#credential-search"),buttons=[...document.querySelectorAll("[data-filter]")];if(!grid)return;let filter="all";const render=()=>{const q=(search?.value||"").toLowerCase().trim(),found=items.filter(x=>(filter==="all"||x[0]===filter)&&x.slice(0,3).join(" ").toLowerCase().includes(q));grid.innerHTML=found.length?found.map((x,i)=>`<article class="archive-item"><figure><img loading="lazy" decoding="async" src="${x[3]}" alt="${x[1]} evidence"></figure><div class="archive-copy"><small>${x[0].toUpperCase()} / ${String(i+1).padStart(2,"0")}</small><h3>${x[1]}</h3><p>${x[2]}</p></div><button type="button" data-lightbox="${x[3]}" data-caption="${x[1]} — ${x[2]}">OPEN EVIDENCE ↗</button></article>`).join(""):`<div class="empty">No archive item matches that search.</div>`};buttons.forEach(b=>b.addEventListener("click",()=>{buttons.forEach(x=>x.classList.remove("active"));b.classList.add("active");filter=b.dataset.filter;render()}));search?.addEventListener("input",render);render();}
 
 /* --- lightbox.js --- */
-
-  /* --- lightbox.js --- */
+/* --- lightbox.js --- */
 function initLightbox(){
   const box=$("#lightbox"),
         img=$("#lightbox-image"),
@@ -83,11 +82,11 @@ function initLightbox(){
   if(!box||!img||!cap||!close||!prev||!next)return;
 
   let index=0;
-  let historyOpen=false;
+  let lightboxHistory=false;
 
   const items=()=>[...document.querySelectorAll("[data-lightbox]")];
 
-  const open=(i,useHistory=true)=>{
+  const open=(i,addHistory=true)=>{
     const all=items();
 
     if(!all.length)return;
@@ -103,40 +102,32 @@ function initLightbox(){
     box.hidden=false;
     document.body.style.overflow="hidden";
 
-    /*
-     * Create a temporary browser-history state when the
-     * lightbox opens. This allows Android/browser Back to
-     * close the viewer instead of leaving the portfolio.
-     */
-    if(useHistory&&!historyOpen){
+    if(addHistory&&!lightboxHistory){
       history.pushState(
-        {lightbox:true},
+        {
+          ...(history.state||{}),
+          __lightbox:true
+        },
         "",
         location.href
       );
 
-      historyOpen=true;
+      lightboxHistory=true;
     }
 
     close.focus();
   };
 
-  const hide=(fromHistory=false)=>{
+  const closeLightbox=()=>{
     if(box.hidden)return;
 
     box.hidden=true;
     document.body.style.overflow="";
 
-    /*
-     * If the user clicked ×, remove the temporary history
-     * entry so the next Back press behaves normally.
-     */
-    if(!fromHistory&&historyOpen){
+    if(lightboxHistory){
+      lightboxHistory=false;
       history.back();
-      return;
     }
-
-    historyOpen=false;
   };
 
   document.addEventListener("click",e=>{
@@ -146,11 +137,11 @@ function initLightbox(){
 
     e.preventDefault();
 
-    open(items().indexOf(x));
+    open(items().indexOf(x),true);
   });
 
   close.addEventListener("click",()=>{
-    hide(false);
+    closeLightbox();
   });
 
   prev.addEventListener("click",()=>{
@@ -162,22 +153,30 @@ function initLightbox(){
   });
 
   /*
-   * Android / browser Back:
-   * close the lightbox instead of leaving the page.
+   * Android / browser Back button.
+   *
+   * Opening the lightbox creates one temporary history entry.
+   * Pressing Back removes that entry and closes the lightbox,
+   * keeping the user on the portfolio page.
    */
-  window.addEventListener("popstate",()=>{
-    if(historyOpen){
-      historyOpen=false;
-      box.hidden=true;
-      document.body.style.overflow="";
+  window.addEventListener("popstate",e=>{
+    if(!lightboxHistory)return;
+
+    if(e.state?.__lightbox){
+      return;
     }
+
+    lightboxHistory=false;
+    box.hidden=true;
+    document.body.style.overflow="";
   });
 
   document.addEventListener("keydown",e=>{
     if(box.hidden)return;
 
     if(e.key==="Escape"){
-      hide(false);
+      closeLightbox();
+      return;
     }
 
     if(e.key==="ArrowLeft"){
@@ -189,6 +188,7 @@ function initLightbox(){
     }
   });
 }
+
 /* --- contact.js --- */
 function initContact(){
  const copyButtons=document.querySelectorAll('[data-copy]');
